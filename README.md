@@ -16,3 +16,5 @@
     <img alt="Stargazers" src="https://img.shields.io/github/stars/IanTorquato/Happy-Rocketseat-NLW">
   </a>
 </p>
+
+<p align="center"> <img src="https://repository-images.githubusercontent.com/303376066/ba97b980-0c98-11eb-9213-e788aedb6625" /> </p>
