@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
+import * as Yup from 'yup'
 
 import Orphanage from '../models/Orphanage'
 import orphanages_view from '../view/orphanages_view'
@@ -13,8 +14,25 @@ export default {
 
 		const orphanagesRepository = getRepository(Orphanage)
 
-		const orphanage = orphanagesRepository
-			.create({ name, latitude, longitude, about, instructions, opening_hours, open_on_weekends, images })
+		const data = { name, latitude, longitude, about, instructions, opening_hours, open_on_weekends, images }
+
+		const schema = Yup.object().shape({
+			name: Yup.string().required('O campo "name" é obrigatório.'),
+			latitude: Yup.number().required('O campo "latitude" é obrigatório.'),
+			longitude: Yup.number().required('O campo "longitude" é obrigatório.'),
+			about: Yup.string().required('O campo "about" é obrigatório.').max(300, 'O campo "about" aceita até 300 caracteres.'),
+			instructions: Yup.string().required('O campo "instructions" é obrigatório.'),
+			opening_hours: Yup.string().required('O campo "opening_hours" é obrigatório.'),
+			open_on_weekends: Yup.boolean().required('O campo "open_on_weekends" é obrigatório.'),
+			images: Yup.array(
+				Yup.object().shape({
+					path: Yup.string().required('O campo "path" é obrigatório.')
+				}))
+		})
+
+		await schema.validate(data, { abortEarly: false })
+
+		const orphanage = orphanagesRepository.create(data)
 
 		await orphanagesRepository.save(orphanage)
 
