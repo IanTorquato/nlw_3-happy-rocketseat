@@ -25,10 +25,19 @@ const OrphanagesMap: React.FC = () => {
 	const [orphanages, setOrphanages] = useState<Orphanage[]>([] as Orphanage[])
 
 	useEffect(() => {
-		api.get('/orphanages').then(({ data }) => setOrphanages(data)).catch(response => {
-			console.log(JSON.stringify(response))
-			alert('Falha ao listar orfanatos.')
-		})
+		api.get('/orphanages')
+			.then(({ data }) => setOrphanages(data))
+			.catch(({ response }) => {
+				const { message, errors } = response.data
+
+				if (!message) {
+					console.log(response)
+					return alert('Falha ao listar os orfanatos!')
+				}
+
+				console.error(errors)
+				alert(message)
+			})
 	}, [])
 
 	return (

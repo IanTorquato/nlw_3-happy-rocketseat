@@ -35,10 +35,19 @@ const Orphanage: React.FC = () => {
 	const params = useParams<RouteParams>()
 
 	useEffect(() => {
-		api.get(`/orphanages/${params.id}`).then(({ data }) => setOrphanage(data)).catch(response => {
-			console.log(JSON.stringify(response))
-			alert('Falha ao listar orfanatos.')
-		})
+		api.get(`/orphanages/${params.id}`)
+			.then(({ data }) => setOrphanage(data))
+			.catch(({ response }) => {
+				const { message, errors } = response.data
+
+				if (!message) {
+					console.log(response)
+					return alert('Falha ao listar dados do orfanato!')
+				}
+
+				console.error(errors)
+				alert(message)
+			})
 	}, [params.id])
 
 	if (!orphanage) { return <p>Carregando...</p> }
