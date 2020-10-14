@@ -23,9 +23,12 @@ interface Orphanage {
 
 const OrphanagesMap: React.FC = () => {
 	const [orphanages, setOrphanages] = useState<Orphanage[]>([] as Orphanage[])
-	console.log(orphanages)
+
 	useEffect(() => {
-		api.get('/orphanages').then(({ data }) => setOrphanages(data)).catch()
+		api.get('/orphanages').then(({ data }) => setOrphanages(data)).catch(response => {
+			console.log(JSON.stringify(response))
+			alert('Falha ao listar orfanatos.')
+		})
 	}, [])
 
 	return (
