@@ -28,7 +28,7 @@ const OrphanagesMap: React.FC = () => {
 		api.get('orphanages')
 			.then(({ data }) => setOrphanages(data))
 			.catch(({ response }) => {
-				console.log(response.data)
+				console.error(response.data)
 				return Alert.alert('Erro', 'Falha ao listar orfanatos.')
 			})
 	}, [])
