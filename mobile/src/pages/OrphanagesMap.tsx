@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Alert, StyleSheet, Text, View } from 'react-native'
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
 import { RectButton } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import api from '../services/api'
 import mapMarker from '../images/map-marker.png'
@@ -24,19 +24,19 @@ const OrphanagesMap: React.FC = () => {
 	const [orphanages, setOrphanages] = useState<Orphanage[]>([])
 	const { navigate } = useNavigation()
 
-	useEffect(() => {
+	useFocusEffect(() => {
 		api.get('orphanages')
 			.then(({ data }) => setOrphanages(data))
 			.catch(({ response }) => {
 				console.error(response.data)
 				return Alert.alert('Erro', 'Falha ao listar orfanatos.')
 			})
-	}, [])
+	})
 
 	return (
 		<View style={styles.container}>
 			<MapView style={styles.map} provider={PROVIDER_GOOGLE} initialRegion={
-				{ latitude: -28.3304323, longitude: -49.0351485, latitudeDelta: 0.016, longitudeDelta: 0.016 }
+				{ latitude: -28.3304323, longitude: -49.0351485, latitudeDelta: 0.02, longitudeDelta: 0.02 }
 			}>
 				{orphanages.map(orphanage => (
 					<Marker key={orphanage.id} coordinate={{ latitude: orphanage.latitude, longitude: orphanage.longitude }}

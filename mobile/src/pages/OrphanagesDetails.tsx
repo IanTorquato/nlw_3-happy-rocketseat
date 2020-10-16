@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Image, View, ScrollView, Text, StyleSheet, Dimensions, Alert, TouchableOpacity, Linking } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import { RectButton } from 'react-native-gesture-handler'
 import MapView, { Marker } from 'react-native-maps'
-import { Feather, FontAwesome } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 
 import api from '../services/api'
 import mapMarkerImg from '../images/map-marker.png'
@@ -24,7 +23,7 @@ interface Orphanage {
 	images: { id: number, url: string }[]
 }
 
-export default function OrphanageDetails() {
+const OrphanageDetails: React.FC = () => {
 	const [orphanage, setOrphanage] = useState<Orphanage>()
 
 	const route = useRoute()
@@ -58,7 +57,7 @@ export default function OrphanageDetails() {
 				<View style={styles.mapContainer}>
 					<MapView style={styles.mapStyle} zoomEnabled={false} pitchEnabled={false} scrollEnabled={false}
 						rotateEnabled={false} initialRegion={
-							{ latitude: orphanage.latitude, longitude: orphanage.longitude, latitudeDelta: 0.008, longitudeDelta: 0.008, }
+							{ latitude: orphanage.latitude, longitude: orphanage.longitude, latitudeDelta: 0.006, longitudeDelta: 0.006, }
 						}>
 
 						<Marker icon={mapMarkerImg} coordinate={{ latitude: orphanage.latitude, longitude: orphanage.longitude }} />
@@ -97,12 +96,6 @@ export default function OrphanageDetails() {
 							</View>
 						)}
 				</View>
-
-				{/* <RectButton style={styles.contactButton} onPress={() => { }}>
-					<FontAwesome name="whatsapp" size={24} color="#fff" />
-
-					<Text style={styles.contactButtonText}>Entrar em contato</Text>
-				</RectButton> */}
 			</View>
 		</ScrollView>
 	)
@@ -240,3 +233,5 @@ const styles = StyleSheet.create({
 		marginLeft: 16
 	}
 })
+
+export default OrphanageDetails
