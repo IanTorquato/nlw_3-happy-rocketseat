@@ -1,17 +1,23 @@
 {
-	"expo": {
-		"assetBundlePatterns": [ "**/*" ],
-		"icon": "./assets/icon.png",
-		"ios": { "supportsTablet": true },
+  "expo": {
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": true
+    },
     "name": "mobile",
-		"orientation": "portrait",
+    "orientation": "portrait",
     "slug": "mobile",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": { "fallbackToCacheTimeout": 0 },
-		"version": "1.0.0"
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "version": "1.0.0"
   }
-} 
+}

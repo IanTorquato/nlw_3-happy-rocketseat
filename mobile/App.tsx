@@ -5,11 +5,11 @@ import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-g
 import Routes from './src/routes'
 
 const App: React.FC = () => {
-	const [fontsLoaded] = useFonts({ Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold })
+  const [fontsLoaded] = useFonts({ Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold })
 
-	if (!fontsLoaded) { return null }
+  if (!fontsLoaded) { return null }
 
-	return <Routes />
+  return <Routes />
 }
 
 export default App

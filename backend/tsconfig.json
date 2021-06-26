@@ -1,17 +1,19 @@
 {
-	"compilerOptions": {
-		// Habilitando Decorators
-		"emitDecoratorMetadata": true,
-		"esModuleInterop": true,
-		// Habilitando Decorators
-		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true,
-		"module": "commonjs",
-		"outDir": "./dist",
-		"skipLibCheck": true,
-		"strict": true,
-		"strictPropertyInitialization": false,
-		"target": "ES2017"
-	},
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    // Habilitando Decorators
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    // Habilitando Decorators
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "target": "ES2017"
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
